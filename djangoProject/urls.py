@@ -18,8 +18,11 @@ from django.urls import path, include
 
 import todolist.urls as todo_url
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('todo/', include(todo_url, namespace="todo")),
     path('api-auth/', include('rest_framework.urls'))
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
